@@ -19,8 +19,6 @@ final class MapScreenViewController: UIViewController {
     
     private let apiClient: UdacityApiClientProtocol = UdacityApiClient()
     
-    private var locations = [StudentLocationResponseItem]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadPins()
@@ -35,7 +33,6 @@ final class MapScreenViewController: UIViewController {
                 switch result {
                 case .success(let data):
                     let annotations = self.createAnnotations(using: data.results)
-                    self.locations = data.results
                     self.mapView.addAnnotations(annotations)
                 case .failure(let error):
                     print(error)

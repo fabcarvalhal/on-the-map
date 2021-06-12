@@ -130,14 +130,39 @@
         <!--On The Map-->
         <scene sceneID="T8J-Z6-QXJ">
             <objects>
-                <viewController title="On The Map" id="mqj-eA-8YF" sceneMemberID="viewController">
+                <viewController id="mqj-eA-8YF" customClass="MapScreenViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="72G-y2-qUo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="atm-t9-IgU">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                            </mapView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="1Ra-hS-2Fy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1Ra-hS-2Fy" firstAttribute="trailing" secondItem="atm-t9-IgU" secondAttribute="trailing" id="MLf-8C-Dbm"/>
+                            <constraint firstItem="atm-t9-IgU" firstAttribute="top" secondItem="1Ra-hS-2Fy" secondAttribute="top" id="QKo-Qd-1bH"/>
+                            <constraint firstItem="1Ra-hS-2Fy" firstAttribute="bottom" secondItem="atm-t9-IgU" secondAttribute="bottom" id="WaU-Cx-paW"/>
+                            <constraint firstItem="atm-t9-IgU" firstAttribute="leading" secondItem="1Ra-hS-2Fy" secondAttribute="leading" id="XSU-yu-uuA"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="DuR-hy-sAH"/>
+                    <navigationItem key="navigationItem" title="On The Map" id="DuR-hy-sAH">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="pin.fill" catalog="system" id="LlY-vg-BDN">
+                            <connections>
+                                <action selector="addPinButtonAction" destination="mqj-eA-8YF" id="bn1-eR-YBA"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.clockwise" catalog="system" id="zpV-kZ-aTp">
+                            <connections>
+                                <action selector="reloadButtonAction" destination="mqj-eA-8YF" id="sSF-Qa-Qd6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="atm-t9-IgU" id="o4h-xj-Stq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VVC-ZZ-SmH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -162,11 +187,11 @@
             </objects>
             <point key="canvasLocation" x="2210.144927536232" y="124.55357142857142"/>
         </scene>
-        <!--Item 1-->
+        <!--Map-->
         <scene sceneID="jes-C7-aRb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PUR-RN-okU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 1" id="y6v-hb-ZH4"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="y6v-hb-ZH4"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="del-vV-SlW">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -219,6 +244,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
+        <image name="map" catalog="system" width="128" height="110"/>
+        <image name="pin.fill" catalog="system" width="119" height="128"/>
         <image name="udacity_logo" width="412" height="418"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

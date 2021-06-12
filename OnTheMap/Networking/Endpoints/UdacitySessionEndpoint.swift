@@ -7,27 +7,27 @@
 
 import Foundation
 
-enum UdacityEndpoint: Endpoint {
+enum UdacitySessionEndpoint: Endpoint {
     
-    case createSession
+    case create
     
     var baseUrl: String {
         switch self {
-        case .createSession:
+        case .create:
             return "https://onthemap-api.udacity.com/v1"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .createSession:
+        case .create:
             return .post
         }
     }
     
     var path: String {
         switch self {
-        case .createSession:
+        case .create:
             return "/session"
         }
     }

@@ -34,7 +34,10 @@ class LoginViewController: UIViewController {
     
     // MARK - Actions
     @IBAction func loginButtonTapAction(_ sender: UIButton) {
-        
+        let req = StudentLocationRequest(limit: 10, skip: 0, order: "-updatedAt")
+        apiClient.getStudentLocations(studentLocationRequest: req) { response in
+            print(response)
+        }
     }
 }
 

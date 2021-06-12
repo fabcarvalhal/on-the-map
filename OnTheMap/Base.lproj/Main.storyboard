@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="LoginGradientView" customModule="OnTheMap" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Kr-ul-map">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYJ-KF-234">
+                                        <rect key="frame" x="0.0" y="0.0" width="412" height="430.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to Udacity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4Q-Jf-0iW">
+                                                <rect key="frame" x="48" y="212" width="316" height="26.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bXr-00-Kee">
+                                                <rect key="frame" x="48" y="254.5" width="316" height="160"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gGa-NH-RvQ" customClass="CustomTextField" customModule="OnTheMap" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="316" height="48"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.70210167290000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="48" id="3gJ-fO-b9g"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" textContentType="email"/>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sDu-4N-8AP" customClass="CustomTextField" customModule="OnTheMap" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="56" width="316" height="48"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.70210167290000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" textContentType="password"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CpM-bU-sT0">
+                                                        <rect key="frame" x="0.0" y="112" width="316" height="48"/>
+                                                        <color key="backgroundColor" red="0.89435750246047974" green="0.34316647052764893" blue="0.05947691947221756" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                        <state key="normal" title="Login">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="udacity_logo" translatesAutoresizingMaskIntoConstraints="NO" id="doC-m1-G5H">
+                                                <rect key="frame" x="48" y="12" width="316" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="fha-qO-bqN"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="bXr-00-Kee" secondAttribute="trailing" constant="48" id="56Q-bq-Z5r"/>
+                                            <constraint firstAttribute="trailing" secondItem="X4Q-Jf-0iW" secondAttribute="trailing" constant="48" id="F5N-To-BEt"/>
+                                            <constraint firstItem="X4Q-Jf-0iW" firstAttribute="leading" secondItem="MYJ-KF-234" secondAttribute="leading" constant="48" id="GGL-c6-r63"/>
+                                            <constraint firstItem="X4Q-Jf-0iW" firstAttribute="top" secondItem="doC-m1-G5H" secondAttribute="bottom" id="Q5W-PO-hC6"/>
+                                            <constraint firstAttribute="bottom" secondItem="bXr-00-Kee" secondAttribute="bottom" constant="16" id="SAT-hu-cAJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="doC-m1-G5H" secondAttribute="trailing" constant="48" id="SKP-Ab-bv6"/>
+                                            <constraint firstItem="doC-m1-G5H" firstAttribute="top" secondItem="MYJ-KF-234" secondAttribute="top" constant="12" id="bcU-Mo-lhg"/>
+                                            <constraint firstItem="bXr-00-Kee" firstAttribute="leading" secondItem="MYJ-KF-234" secondAttribute="leading" constant="48" id="fRu-bX-slN"/>
+                                            <constraint firstItem="bXr-00-Kee" firstAttribute="top" secondItem="X4Q-Jf-0iW" secondAttribute="bottom" constant="16" id="lqu-G4-Qj9"/>
+                                            <constraint firstItem="doC-m1-G5H" firstAttribute="leading" secondItem="MYJ-KF-234" secondAttribute="leading" constant="48" id="wIh-N0-nvR"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="MYJ-KF-234" secondAttribute="trailing" id="Csb-Vh-Qgn"/>
+                                    <constraint firstItem="MYJ-KF-234" firstAttribute="top" secondItem="8Kr-ul-map" secondAttribute="top" id="EuY-z2-nsh"/>
+                                    <constraint firstAttribute="bottom" secondItem="MYJ-KF-234" secondAttribute="bottom" id="Xev-oX-HGw"/>
+                                    <constraint firstItem="MYJ-KF-234" firstAttribute="leading" secondItem="8Kr-ul-map" secondAttribute="leading" id="vTn-UQ-cqO"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                        <constraints>
+                            <constraint firstItem="8Kr-ul-map" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IRW-Ge-37P"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8Kr-ul-map" secondAttribute="trailing" id="dfj-En-fGi"/>
+                            <constraint firstItem="MYJ-KF-234" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.995169" id="lPP-m7-3wM"/>
+                            <constraint firstItem="8Kr-ul-map" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="wXr-p8-0wH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8Kr-ul-map" secondAttribute="bottom" id="wZB-jF-vvQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="gGa-NH-RvQ" id="Hg4-Sp-e9s"/>
+                        <outlet property="loginButton" destination="CpM-bU-sT0" id="OEb-Qg-5dD"/>
+                        <outlet property="passwordTextField" destination="sDu-4N-8AP" id="H5v-SC-ZeL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="123.88392857142857"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="udacity_logo" width="412" height="418"/>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

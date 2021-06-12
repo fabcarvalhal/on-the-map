@@ -7,25 +7,26 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     
     // MARK: - Outlets
-    @IBOutlet weak var emailTextField: CustomTextField! {
+    @IBOutlet private weak var emailTextField: CustomTextField! {
         didSet {
             emailTextField.setAttributedPlaceHolder("Email")
         }
     }
     
-    @IBOutlet weak var passwordTextField: CustomTextField! {
+    @IBOutlet private weak var passwordTextField: CustomTextField! {
         didSet {
             passwordTextField.setAttributedPlaceHolder("Password")
         }
     }
     
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet private weak var loginButton: UIButton!
     
     // MARK: - Variables and constans
-    let apiClient: UdacityApiClientProtocol = UdacityApiClient()
+    private let loggedInAreSegueIdentifier = "showLoggedInArea"
+    private let apiClient: UdacityApiClientProtocol = UdacityApiClient()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +35,25 @@ class LoginViewController: UIViewController {
     
     // MARK - Actions
     @IBAction func loginButtonTapAction(_ sender: UIButton) {
-        let req = StudentLocationRequest(limit: 10, skip: 0, order: "-updatedAt")
-        apiClient.getStudentLocations(studentLocationRequest: req) { response in
-            print(response)
+        loginButton.isEnabled = false
+        let password = passwordTextField.text ?? String()
+        let email = emailTextField.text ?? String()
+        let request = UdacitySessionRequestBody(udacity: UdacityLoginInfo(username: email,
+                                                                          password: password))
+        apiClient.createSession(requestBody: request) { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.loginButton.isEnabled = true
+                switch result {
+                case .success(let response):
+                    LoginSession.current?.set(response)
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: self.loggedInAreSegueIdentifier, sender: self)
+                    }
+                case .failure(let failure):
+                    print(failure.localizedDescription)
+                }
+            }
         }
     }
 }

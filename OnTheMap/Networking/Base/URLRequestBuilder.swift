@@ -17,9 +17,16 @@ final class URLRequestBuilder {
     private(set) var cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy
     private(set) var timeoutInterval: Double = 60
     
-    enum URLRequestBuilderError: Error {
+    enum URLRequestBuilderError: LocalizedError {
         
         case invalidUrl
+        
+        var errorDescription: String? {
+            switch self {
+            case .invalidUrl:
+                return "Invalid url"
+            }
+        }
     }
     
     init(with baseUrl: String) throws {

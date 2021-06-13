@@ -12,13 +12,26 @@ protocol URLRequesterProtocol {
     func makeRequest(with request: URLRequest, completion: ((Result<Data>) -> Void)?)
 }
 
-enum URLRequesterError: Error {
+enum URLRequesterError: LocalizedError {
     
     case emptyResponse
     case emptyData
     case unauthorized
     case serverError
     case urlSessionError(Error)
+    
+    var errorDescription: String? {
+        switch self {
+        case .emptyData, .emptyResponse:
+            return "Server returned no data"
+        case .serverError:
+            return "An error occurred on the server"
+        case .unauthorized:
+            return "User not authorized, check your credentials and try again"
+        case .urlSessionError:
+            return "Error communication with the server"
+        }
+    }
 }
 
 final class URLRequester: URLRequesterProtocol {

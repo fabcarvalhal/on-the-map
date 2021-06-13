@@ -93,7 +93,7 @@ final class URLRequestBuilder {
         case .query(let params):
             if let params = params {
                 let queryParams = params.map { pair  in
-                    return URLQueryItem(name: pair.key, value: String(reflecting: pair.value))
+                    return URLQueryItem(name: pair.key, value: "\(pair.value)")
                 }
                 var components = URLComponents(string: urlRequest.url!.absoluteString)
                 components?.queryItems = queryParams

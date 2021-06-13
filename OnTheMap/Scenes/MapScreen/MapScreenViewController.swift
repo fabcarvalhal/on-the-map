@@ -48,7 +48,7 @@ final class MapScreenViewController: UIViewController {
         return studentLocations.map { location in
             let annotation = MKPointAnnotation()
             annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude,
-                                                           longitude: location.latitude)
+                                                           longitude: location.longitude)
             annotation.title = String(format: "%@ %@", location.firstName, location.lastName)
             annotation.subtitle = location.mediaURL
             return annotation

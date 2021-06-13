@@ -42,7 +42,9 @@ final class LoginViewController: UIViewController {
         let userDataResponseHandler = { [weak self] (response: GetUserDataResponse, userId: String) in
             guard let self = self else  { return }
             self.loginButton.isEnabled = true
-            let data = UserDataSession(firstName: response.firstName, lastName: response.lastName)
+            let data = UserDataSession(firstName: response.firstName,
+                                       lastName: response.lastName,
+                                       uniqueId: userId)
             LoginSession.current?.set(data)
             self.performSegue(withIdentifier: self.loggedInAreSegueIdentifier, sender: self)
         }

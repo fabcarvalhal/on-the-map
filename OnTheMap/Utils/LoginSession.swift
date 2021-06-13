@@ -11,6 +11,7 @@ struct UserDataSession {
     
     let firstName: String
     let lastName: String
+    let uniqueId: String
 }
 
 final class LoginSession {

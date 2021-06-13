@@ -10,7 +10,11 @@ import MapKit
 
 final class PinRegisterViewController: UIViewController {
     
-    @IBOutlet private weak var linkTextField: CustomTextField!
+    @IBOutlet private weak var linkTextField: CustomTextField! {
+        didSet {
+            linkTextField.setAttributedPlaceHolder("Enter a Link to Share Here")
+        }
+    }
     @IBOutlet private weak var linkTextFieldWrapperView: UIView!
     @IBOutlet private weak var mapViewWrapperView: UIView!
     @IBOutlet private weak var submitButton: UIButton!
@@ -100,7 +104,7 @@ final class PinRegisterViewController: UIViewController {
     
     @IBAction private func submitButtonAction() {
         let link = linkTextField.text ?? String()
-        let locationString = linkTextField.text ?? String()
+        let locationString = locationTextField.text ?? String()
         guard !link.isEmpty else {
             showErrorAlert(message: "Your link cant be empty", title: "Error")
             return
@@ -110,14 +114,13 @@ final class PinRegisterViewController: UIViewController {
         else {
             return
         }
-        let addLocationRequest = AddStudentLocationRequestBody(uniqueKey: "",
+        let addLocationRequest = AddStudentLocationRequestBody(uniqueKey: loginSessionData.uniqueId,
                                                                firstName: loginSessionData.firstName,
                                                                lastName: loginSessionData.lastName,
                                                                mapString: locationString,
                                                                mediaURL: link,
                                                                latitude: coordinates.latitude,
                                                                longitude: coordinates.longitude)
-        
         view.showLoading()
         apiClient.addStudentLocation(studentLocationRequest: addLocationRequest) { [weak self] result in
             DispatchQueue.main.async {
@@ -130,7 +133,6 @@ final class PinRegisterViewController: UIViewController {
                 }
             }
         }
-        
     }
     
     private func getCoordinates(from address: String,

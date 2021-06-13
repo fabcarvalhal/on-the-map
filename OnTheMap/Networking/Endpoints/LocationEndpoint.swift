@@ -10,26 +10,23 @@ import Foundation
 enum LocationEndpoint: Endpoint {
     
     case list
+    case add
     
     var baseUrl: String {
-        switch self {
-        case .list:
-            return "https://onthemap-api.udacity.com/v1"
-        }
+        "https://onthemap-api.udacity.com/v1"
     }
     
     var method: HTTPMethod {
         switch self {
         case .list:
             return .get
+        case .add:
+            return .post
         }
     }
     
     var path: String {
-        switch self {
-        case .list:
-            return "/StudentLocation"
-        }
+        "/StudentLocation"
     }
     
     var headers: [String : String] {

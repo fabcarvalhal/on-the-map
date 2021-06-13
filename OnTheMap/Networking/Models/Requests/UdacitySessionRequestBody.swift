@@ -17,3 +17,4 @@ struct UdacityLoginInfo: Codable {
     let username: String
     let password: String
 }
+

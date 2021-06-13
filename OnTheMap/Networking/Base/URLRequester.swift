@@ -1,5 +1,5 @@
 //
-//  APIClient.swift
+//  UrlRequester.swift
 //  OnTheMap
 //
 //  Created by Fabrício Silva Carvalhal on 05/06/21.

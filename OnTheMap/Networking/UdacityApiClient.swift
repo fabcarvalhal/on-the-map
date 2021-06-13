@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Conform a struct
+/// Conform a struct with this to convert it to [String: Any] using toDictionary() function
 protocol DictionaryConvertible {
     
     func toDictionary() -> [String: Any]
@@ -61,6 +61,9 @@ protocol UdacityApiClientProtocol {
     
     func getStudentLocations(studentLocationRequest: StudentLocationRequest,
                              completion: @escaping (Result<StudentLocationResponse>) -> Void)
+    
+    func addStudentLocation(studentLocationRequest: AddStudentLocationRequestBody,
+                            completion: @escaping (Result<AddStudentLocationResponse>) -> Void)
 }
 
 final class UdacityApiClient: BaseApiClient, UdacityApiClientProtocol {
@@ -103,6 +106,26 @@ final class UdacityApiClient: BaseApiClient, UdacityApiClientProtocol {
                 .build()
             makeRequest(with: udacityRequest,
                         jsonHandler: SimpleJSONHandler<UdacitySessionResponse>(decodeDataAfter: 5),
+                        completion: completion)
+        } catch let error {
+            completion(.failure(error))
+        }
+    }
+    
+    func addStudentLocation(studentLocationRequest: AddStudentLocationRequestBody,
+                            completion: @escaping (Result<AddStudentLocationResponse>) -> Void) {
+        let endpoint = LocationEndpoint.add
+        
+        do {
+            let encoder = SimpleJSONHandler<AddStudentLocationRequestBody>()
+            let data = try encoder.encode(studentLocationRequest)
+            let udacityRequest = try URLRequestBuilder(with: endpoint.baseUrl)
+                .set(method: endpoint.method)
+                .set(path: endpoint.path)
+                .set(params: .body(data))
+                .set(headers: endpoint.headers)
+                .build()
+            makeRequest(with: udacityRequest,
                         completion: completion)
         } catch let error {
             completion(.failure(error))

@@ -18,6 +18,7 @@ final class MapScreenViewController: UIViewController {
     }
     
     private let apiClient: UdacityApiClientProtocol = UdacityApiClient()
+    private let pinRegistrationSegueIdentifier = "showPinRegisterVC"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,18 +57,12 @@ final class MapScreenViewController: UIViewController {
         mapView.removeAnnotations(mapView.annotations)
     }
     
-    func showErrorAlert(message: String, title: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-    
     @IBAction func reloadButtonAction() {
         loadPins()
     }
     
     @IBAction func addPinButtonAction() {
-        
+        performSegue(withIdentifier: pinRegistrationSegueIdentifier, sender: self)
     }
 }
 

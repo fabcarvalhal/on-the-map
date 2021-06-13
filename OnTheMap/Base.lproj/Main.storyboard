@@ -162,11 +162,154 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="atm-t9-IgU" id="o4h-xj-Stq"/>
+                        <segue destination="QWe-oN-mUc" kind="presentation" identifier="showPinRegisterVC" modalPresentationStyle="fullScreen" id="eHK-27-VuL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VVC-ZZ-SmH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4010.144927536232" y="-179.46428571428569"/>
+        </scene>
+        <!--Pin Register View Controller-->
+        <scene sceneID="X61-oP-Fkh">
+            <objects>
+                <viewController id="QWe-oN-mUc" customClass="PinRegisterViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8sS-IO-xyE" userLabel="MainView">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0dq-r5-QNg">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zha-Qm-bgc" userLabel="TextFieldWrapperView">
+                                        <rect key="frame" x="0.0" y="-358.5" width="414" height="358.5"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="72H-Az-SVI" customClass="CustomTextField" customModule="OnTheMap" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="48" width="414" height="310.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="72H-Az-SVI" firstAttribute="top" secondItem="zha-Qm-bgc" secondAttribute="top" constant="48" id="8rl-os-M3v"/>
+                                            <constraint firstAttribute="bottom" secondItem="72H-Az-SVI" secondAttribute="bottom" id="UCK-SK-qJ4"/>
+                                            <constraint firstItem="72H-Az-SVI" firstAttribute="leading" secondItem="zha-Qm-bgc" secondAttribute="leading" id="nTb-K7-axK"/>
+                                            <constraint firstAttribute="trailing" secondItem="72H-Az-SVI" secondAttribute="trailing" id="wCm-6A-Gg0"/>
+                                        </constraints>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpN-yt-PPi">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                        <subviews>
+                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5Ea-A6-Bjy">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                            </mapView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFj-ZL-zrB">
+                                                <rect key="frame" x="166.5" y="-58" width="81" height="34"/>
+                                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <inset key="contentEdgeInsets" minX="16" minY="8" maxX="16" maxY="8"/>
+                                                <state key="normal" title="Submit"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="submitButtonAction" destination="QWe-oN-mUc" eventType="touchUpInside" id="XKk-Tp-5jQ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="5Ea-A6-Bjy" firstAttribute="top" secondItem="zpN-yt-PPi" secondAttribute="top" id="0SH-yG-BGJ"/>
+                                            <constraint firstItem="5Ea-A6-Bjy" firstAttribute="leading" secondItem="zpN-yt-PPi" secondAttribute="leading" id="4Vf-oV-b2B"/>
+                                            <constraint firstAttribute="bottom" secondItem="5Ea-A6-Bjy" secondAttribute="bottom" id="9tN-S5-etf"/>
+                                            <constraint firstItem="fFj-ZL-zrB" firstAttribute="centerX" secondItem="zpN-yt-PPi" secondAttribute="centerX" id="EhT-Q8-MG4"/>
+                                            <constraint firstAttribute="trailing" secondItem="5Ea-A6-Bjy" secondAttribute="trailing" id="mqP-Yk-mq6"/>
+                                            <constraint firstAttribute="bottom" secondItem="fFj-ZL-zrB" secondAttribute="bottom" constant="24" id="wvS-22-Qy9"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="yzG-Cn-r2w" userLabel="Where are you studying label">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="358.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="46"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ZO-GF-ejd" customClass="CustomTextField" customModule="OnTheMap" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="358.5" width="414" height="268.5"/>
+                                        <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uCb-hC-KEC">
+                                        <rect key="frame" x="0.0" y="627" width="414" height="191"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4R-bs-6SN">
+                                                <rect key="frame" x="135.5" y="78.5" width="143" height="34"/>
+                                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <inset key="contentEdgeInsets" minX="16" minY="8" maxX="16" maxY="8"/>
+                                                <state key="normal" title="Find on the Map"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="findOnTheMapButtonAction" destination="QWe-oN-mUc" eventType="touchUpInside" id="2gx-ah-WDC"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="E4R-bs-6SN" firstAttribute="centerY" secondItem="uCb-hC-KEC" secondAttribute="centerY" id="2bw-cf-wJC"/>
+                                            <constraint firstItem="E4R-bs-6SN" firstAttribute="centerX" secondItem="uCb-hC-KEC" secondAttribute="centerX" id="JkU-sl-LK2"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0ZO-GF-ejd" firstAttribute="top" secondItem="yzG-Cn-r2w" secondAttribute="bottom" id="JVa-LS-OLf"/>
+                                    <constraint firstItem="uCb-hC-KEC" firstAttribute="top" secondItem="0ZO-GF-ejd" secondAttribute="bottom" id="Pvt-GO-OD2"/>
+                                    <constraint firstItem="0ZO-GF-ejd" firstAttribute="leading" secondItem="0dq-r5-QNg" secondAttribute="leading" id="cgj-Oa-gEv"/>
+                                    <constraint firstAttribute="trailing" secondItem="0ZO-GF-ejd" secondAttribute="trailing" id="joi-6F-9hA"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cii-ly-feL">
+                                <rect key="frame" x="342" y="68" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButtonAction" destination="QWe-oN-mUc" eventType="touchUpInside" id="9UU-Aq-a02"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7oj-x7-SQB"/>
+                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                        <constraints>
+                            <constraint firstItem="zha-Qm-bgc" firstAttribute="height" secondItem="8sS-IO-xyE" secondAttribute="height" multiplier="0.4" id="1zX-n2-Fde"/>
+                            <constraint firstItem="7oj-x7-SQB" firstAttribute="trailing" secondItem="0dq-r5-QNg" secondAttribute="trailing" id="EiV-qv-T7R"/>
+                            <constraint firstItem="0ZO-GF-ejd" firstAttribute="height" secondItem="8sS-IO-xyE" secondAttribute="height" multiplier="0.3" id="Gz2-RH-CIF"/>
+                            <constraint firstItem="0dq-r5-QNg" firstAttribute="top" secondItem="7oj-x7-SQB" secondAttribute="top" id="MMl-Vw-uuR"/>
+                            <constraint firstItem="yzG-Cn-r2w" firstAttribute="height" secondItem="8sS-IO-xyE" secondAttribute="height" multiplier="0.4" id="Qp1-MY-WYg"/>
+                            <constraint firstItem="7oj-x7-SQB" firstAttribute="bottom" secondItem="0dq-r5-QNg" secondAttribute="bottom" id="bdE-1g-gxn"/>
+                            <constraint firstItem="0dq-r5-QNg" firstAttribute="leading" secondItem="7oj-x7-SQB" secondAttribute="leading" id="ci7-18-cNP"/>
+                            <constraint firstItem="7oj-x7-SQB" firstAttribute="trailing" secondItem="Cii-ly-feL" secondAttribute="trailing" constant="24" id="nKl-WJ-9Nk"/>
+                            <constraint firstItem="Cii-ly-feL" firstAttribute="top" secondItem="7oj-x7-SQB" secondAttribute="top" constant="24" id="qUP-uy-dhe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="findOnTheMapButton" destination="E4R-bs-6SN" id="FSw-wX-wTo"/>
+                        <outlet property="findOnTheMapView" destination="uCb-hC-KEC" id="AAE-hX-13H"/>
+                        <outlet property="linkTextField" destination="72H-Az-SVI" id="HAN-Vw-lfd"/>
+                        <outlet property="linkTextFieldWrapperView" destination="zha-Qm-bgc" id="QgR-V5-x67"/>
+                        <outlet property="locationTextField" destination="0ZO-GF-ejd" id="Yng-Nz-ROe"/>
+                        <outlet property="mapView" destination="5Ea-A6-Bjy" id="ssR-QN-qhs"/>
+                        <outlet property="mapViewWrapperView" destination="zpN-yt-PPi" id="Px5-6Y-WLH"/>
+                        <outlet property="submitButton" destination="fFj-ZL-zrB" id="xn0-6x-ZNz"/>
+                        <outlet property="whereAreYouStudyingLabel" destination="yzG-Cn-r2w" id="VAY-VS-yCR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Iis-1Y-IUH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5675" y="194"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="CRn-aM-NfT">
@@ -250,6 +393,9 @@
         <image name="udacity_logo" width="412" height="418"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

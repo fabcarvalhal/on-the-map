@@ -7,19 +7,25 @@
 
 import Foundation
 
+struct UserDataSession {
+    
+    let firstName: String
+    let lastName: String
+}
+
 final class LoginSession {
     
-    private var session: UdacitySessionResponse?
+    private var session: UserDataSession?
     
     static let current: LoginSession? = LoginSession()
     
     private init() {}
     
-    func set(_ session: UdacitySessionResponse) {
+    func set(_ session: UserDataSession) {
         self.session = session
     }
     
-    func get() -> UdacitySessionResponse? {
+    func get() -> UserDataSession? {
         session
     }
 }

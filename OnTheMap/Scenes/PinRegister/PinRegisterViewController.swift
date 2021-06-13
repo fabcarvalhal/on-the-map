@@ -15,6 +15,7 @@ final class PinRegisterViewController: UIViewController {
             linkTextField.setAttributedPlaceHolder("Enter a Link to Share Here")
         }
     }
+    @IBOutlet private weak var cancelButton: UIButton!
     @IBOutlet private weak var linkTextFieldWrapperView: UIView!
     @IBOutlet private weak var mapViewWrapperView: UIView!
     @IBOutlet private weak var submitButton: UIButton!
@@ -83,6 +84,7 @@ final class PinRegisterViewController: UIViewController {
                     self?.locationTextField.isHidden = true
                     self?.mapViewWrapperView.isHidden = false
                     self?.linkTextFieldWrapperView.isHidden = false
+                    self?.cancelButton.setTitleColor(.white, for: .normal)
                 }) { completed in
                     if completed {
                         self?.setAnnotation(for: location, and: address)

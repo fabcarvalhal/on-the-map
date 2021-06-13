@@ -37,12 +37,14 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="48" id="3gJ-fO-b9g"/>
                                                         </constraints>
+                                                        <color key="textColor" red="0.89435750246047974" green="0.34316647052764893" blue="0.05947691947221756" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" textContentType="email"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sDu-4N-8AP" customClass="CustomTextField" customModule="OnTheMap" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="56" width="316" height="48"/>
                                                         <color key="backgroundColor" white="1" alpha="0.70210167290000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" red="0.89435750246047974" green="0.34316647052764893" blue="0.05947691947221756" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" textContentType="password"/>
                                                     </textField>

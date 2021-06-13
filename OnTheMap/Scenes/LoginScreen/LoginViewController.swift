@@ -30,7 +30,6 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     // MARK - Actions
@@ -40,18 +39,38 @@ final class LoginViewController: UIViewController {
         let email = emailTextField.text ?? String()
         let request = UdacitySessionRequestBody(udacity: UdacityLoginInfo(username: email,
                                                                           password: password))
+        let userDataResponseHandler = { [weak self] (response: GetUserDataResponse, userId: String) in
+            guard let self = self else  { return }
+            self.loginButton.isEnabled = true
+            let data = UserDataSession(firstName: response.firstName, lastName: response.lastName)
+            LoginSession.current?.set(data)
+            self.performSegue(withIdentifier: self.loggedInAreSegueIdentifier, sender: self)
+        }
+        view.showLoading()
         apiClient.createSession(requestBody: request) { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.loginButton.isEnabled = true
                 switch result {
                 case .success(let response):
-                    LoginSession.current?.set(response)
-                    DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: self.loggedInAreSegueIdentifier, sender: self)
-                    }
+                    self.getUserData(userId: response.account.key, completion: userDataResponseHandler)
                 case .failure(let failure):
-                    print(failure.localizedDescription)
+                    self.view.hideLoading()
+                    self.loginButton.isEnabled = true
+                    self.showErrorAlert(message: failure.localizedDescription, title: "Error")
+                }
+            }
+        }
+    }
+    
+    func getUserData(userId: String, completion: @escaping (GetUserDataResponse, String) -> Void) {
+        apiClient.getStudentUserData(studentId: userId) { [weak self] result in
+            DispatchQueue.main.async {
+                self?.view.hideLoading()
+                switch result {
+                case .success(let response):
+                    completion(response, userId)
+                case .failure(let error):
+                    self?.showErrorAlert(message: error.localizedDescription, title: "Error")
                 }
             }
         }

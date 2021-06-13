@@ -62,9 +62,10 @@ final class PinRegisterViewController: UIViewController {
             showErrorAlert(message: "Your location cant be empty", title: "Error")
             return
         }
-        
+        view.showLoading()
         getCoordinates(from: address) { [weak self] location in
             DispatchQueue.main.async {
+                self?.view.hideLoading()
                 guard let location = location else {
                     self?.showErrorAlert(message: "Error trying to get your coordinates", title: "Error")
                     return
@@ -116,8 +117,11 @@ final class PinRegisterViewController: UIViewController {
                                                                mediaURL: link,
                                                                latitude: coordinates.latitude,
                                                                longitude: coordinates.longitude)
+        
+        view.showLoading()
         apiClient.addStudentLocation(studentLocationRequest: addLocationRequest) { [weak self] result in
             DispatchQueue.main.async {
+                self?.view.hideLoading()
                 switch result {
                 case .success:
                     self?.dismiss(animated: true, completion: nil)

@@ -26,11 +26,13 @@ final class MapScreenViewController: UIViewController {
     }
     
     func loadPins() {
+        view.showLoading()
         clearAnnotations()
         let request = StudentLocationRequest(limit: 200, skip: 0, order: "-updatedAt")
         apiClient.getStudentLocations(studentLocationRequest: request) { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
+                self.view.hideLoading()
                 switch result {
                 case .success(let data):
                     let annotations = self.createAnnotations(using: data.results)

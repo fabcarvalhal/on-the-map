@@ -7,7 +7,7 @@
 
 import UIKit
 
-public extension NSMutableAttributedString {
+extension NSMutableAttributedString {
    
     func setColor(color: UIColor, forText stringValue: String) {
         let range: NSRange = self.mutableString.range(of: stringValue, options: .caseInsensitive)

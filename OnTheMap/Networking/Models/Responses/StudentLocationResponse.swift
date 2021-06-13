@@ -9,7 +9,7 @@ import Foundation
 
 struct StudentLocationResponse: Codable {
     
-    let results: [StudentLocationResponseItem]
+    let results: [StudentLocationResponseItem]?
 }
 
 struct StudentLocationResponseItem: Codable {

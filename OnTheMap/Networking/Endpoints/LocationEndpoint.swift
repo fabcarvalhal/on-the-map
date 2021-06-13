@@ -11,6 +11,7 @@ enum LocationEndpoint: Endpoint {
     
     case list
     case add
+    case update(id: String)
     
     var baseUrl: String {
         "https://onthemap-api.udacity.com/v1"
@@ -22,14 +23,22 @@ enum LocationEndpoint: Endpoint {
             return .get
         case .add:
             return .post
+        case .update:
+            return .put
         }
     }
     
     var path: String {
-        "/StudentLocation"
+        switch self {
+        case .update(let id):
+            return "/StudentLocation/\(id)"
+        default:
+            return "/StudentLocation"
+        }
     }
     
     var headers: [String : String] {
-        [:]
+        return [HTTPHeaderField.accept.rawValue: ContentType.json.rawValue,
+                HTTPHeaderField.contentType.rawValue: ContentType.json.rawValue]
     }
 }

@@ -19,6 +19,7 @@ final class MapScreenViewController: UIViewController {
     
     private let apiClient: UdacityApiClientProtocol = UdacityApiClient()
     private let pinRegistrationSegueIdentifier = "showPinRegisterVC"
+    private var locationToUpdate: StudentLocationResponseItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,17 +29,39 @@ final class MapScreenViewController: UIViewController {
     func loadPins() {
         view.showLoading()
         clearAnnotations()
-        let request = StudentLocationRequest(limit: 200, skip: 0, order: "-updatedAt")
+        let request = StudentLocationRequest(limit: 200, skip: 0, order: "-updatedAt", userId: "")
         apiClient.getStudentLocations(studentLocationRequest: request) { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.view.hideLoading()
                 switch result {
                 case .success(let data):
-                    let annotations = self.createAnnotations(using: data.results)
+                    guard let results = data.results else { return }
+                    let annotations = self.createAnnotations(using: results)
                     self.mapView.addAnnotations(annotations)
                 case .failure(let error):
-                    print(error)
+                    self.showErrorAlert(message: error.localizedDescription, title: "Error")
+                }
+            }
+        }
+    }
+    
+    func verifyIfUserHasAlreadySentAPin(completion: @escaping (StudentLocationResponseItem?) -> Void) {
+        guard let userId = LoginSession.current?.get()?.uniqueId else { return }
+        view.showLoading()
+        let request = StudentLocationRequest(limit: 1,
+                                             skip: 0,
+                                             order: "-updatedAt",
+                                             userId: userId)
+        apiClient.getStudentLocations(studentLocationRequest: request) { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.view.hideLoading()
+                switch result {
+                case .success(let data):
+                    completion(data.results?.first)
+                case .failure(let error):
+                    self.showErrorAlert(message: error.localizedDescription, title: "Error")
                 }
             }
         }
@@ -64,7 +87,31 @@ final class MapScreenViewController: UIViewController {
     }
     
     @IBAction func addPinButtonAction() {
-        performSegue(withIdentifier: pinRegistrationSegueIdentifier, sender: self)
+        verifyIfUserHasAlreadySentAPin { [weak self] location in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                guard location != nil else {
+                    self.performSegue(withIdentifier: self.pinRegistrationSegueIdentifier, sender: self)
+                    return
+                }
+                self.locationToUpdate = location
+                let alert = UIAlertController(title: nil,
+                                              message: "You have already posted a student location. Would you like to overwrite your current location?",
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: "Overwrite", style: .default, handler: { _ in
+                    self.performSegue(withIdentifier: self.pinRegistrationSegueIdentifier, sender: self)
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == pinRegistrationSegueIdentifier {
+            (segue.destination as? PinRegisterViewController)?.locationIdToUpdate = locationToUpdate?.objectId
+            locationToUpdate = nil
+        }
     }
 }
 

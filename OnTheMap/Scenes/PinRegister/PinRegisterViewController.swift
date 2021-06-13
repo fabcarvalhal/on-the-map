@@ -32,6 +32,8 @@ final class PinRegisterViewController: UIViewController {
         }
     }
     
+    var locationIdToUpdate: String?
+    
     private let apiClient: UdacityApiClient = UdacityApiClient()
     private var myLocation: CLLocation?
     
@@ -60,7 +62,6 @@ final class PinRegisterViewController: UIViewController {
     }
     
     @IBAction private func findOnTheMapButtonAction() {
-        findOnTheMapButton.isEnabled = false
         let address = locationTextField.text ?? String()
         guard !address.isEmpty else {
             showErrorAlert(message: "Your location cant be empty", title: "Error")
@@ -84,7 +85,6 @@ final class PinRegisterViewController: UIViewController {
                     self?.linkTextFieldWrapperView.isHidden = false
                 }) { completed in
                     if completed {
-                        self?.findOnTheMapButton.isEnabled = true
                         self?.setAnnotation(for: location, and: address)
                     }
                 }
@@ -109,11 +109,32 @@ final class PinRegisterViewController: UIViewController {
             showErrorAlert(message: "Your link cant be empty", title: "Error")
             return
         }
+        
         guard let loginSessionData = LoginSession.current?.get(),
               let coordinates = myLocation?.coordinate
         else {
             return
         }
+        
+        if let locationIdToUpdate = locationIdToUpdate {
+            performUpdateLocationSubmission(objectId: locationIdToUpdate,
+                                            loginSessionData: loginSessionData,
+                                            locationString: locationString,
+                                            link: link,
+                                            coordinates: coordinates)
+        } else {
+            performAddLocationSubmission(loginSessionData: loginSessionData,
+                                         locationString: locationString,
+                                         link: link,
+                                         coordinates: coordinates)
+        }
+    }
+    
+    private func performAddLocationSubmission(loginSessionData: UserDataSession,
+                                              locationString: String,
+                                              link: String,
+                                              coordinates: CLLocationCoordinate2D) {
+        
         let addLocationRequest = AddStudentLocationRequestBody(uniqueKey: loginSessionData.uniqueId,
                                                                firstName: loginSessionData.firstName,
                                                                lastName: loginSessionData.lastName,
@@ -133,6 +154,35 @@ final class PinRegisterViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    private func performUpdateLocationSubmission(objectId: String,
+                                                 loginSessionData: UserDataSession,
+                                                 locationString: String,
+                                                 link: String,
+                                                 coordinates: CLLocationCoordinate2D) {
+        
+        let updateLocationRequest = UpdateStudentLocationRequestBody(uniqueKey: loginSessionData.uniqueId,
+                                                                     firstName: loginSessionData.firstName,
+                                                                     lastName: loginSessionData.lastName,
+                                                                     mapString: locationString,
+                                                                     mediaURL: link,
+                                                                     latitude: coordinates.latitude,
+                                                                     longitude: coordinates.longitude)
+        view.showLoading()
+        apiClient
+            .updateStudentLocation(objectId: objectId,
+                                   studentLocationRequest: updateLocationRequest) { [weak self] result in
+                DispatchQueue.main.async {
+                    self?.view.hideLoading()
+                    switch result {
+                    case .success:
+                        self?.dismiss(animated: true, completion: nil)
+                    case .failure(let error):
+                        self?.showErrorAlert(message: error.localizedDescription, title: "Error")
+                    }
+                }
+            }
     }
     
     private func getCoordinates(from address: String,

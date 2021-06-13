@@ -12,4 +12,5 @@ struct StudentLocationRequest: DictionaryConvertible {
     let limit: Int
     let skip: Int
     let order: String
+    let userId: String
 }

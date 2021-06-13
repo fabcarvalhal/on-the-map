@@ -20,6 +20,10 @@ protocol UdacityApiClientProtocol {
     
     func getStudentUserData(studentId: String,
                             completion: @escaping (Result<GetUserDataResponse>) -> Void)
+    
+    func updateStudentLocation(objectId: String,
+                               studentLocationRequest: UpdateStudentLocationRequestBody,
+                               completion: @escaping (Result<UpdateStudnetLocationResponse>) -> Void)
 }
 
 final class UdacityApiClient: BaseApiClient, UdacityApiClientProtocol {
@@ -100,6 +104,27 @@ final class UdacityApiClient: BaseApiClient, UdacityApiClientProtocol {
                 .build()
             makeRequest(with: udacityRequest,
                         jsonHandler: SimpleJSONHandler<GetUserDataResponse>(decodeDataAfter: 5),
+                        completion: completion)
+        } catch let error {
+            completion(.failure(error))
+        }
+    }
+    
+    func updateStudentLocation(objectId: String,
+                               studentLocationRequest: UpdateStudentLocationRequestBody,
+                               completion: @escaping (Result<UpdateStudnetLocationResponse>) -> Void) {
+        let endpoint = LocationEndpoint.update(id: objectId)
+        
+        let encoder = SimpleJSONHandler<UpdateStudentLocationRequestBody>()
+        do {
+            let data = try encoder.encode(studentLocationRequest)
+            let udacityRequest = try URLRequestBuilder(with: endpoint.baseUrl)
+                .set(method: endpoint.method)
+                .set(path: endpoint.path)
+                .set(params: .body(data))
+                .set(headers: endpoint.headers)
+                .build()
+            makeRequest(with: udacityRequest,
                         completion: completion)
         } catch let error {
             completion(.failure(error))

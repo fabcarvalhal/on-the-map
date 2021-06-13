@@ -24,6 +24,8 @@
 		7F66E10B2675BA2600BC9BE4 /* DictionaryConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F66E10A2675BA2600BC9BE4 /* DictionaryConvertible.swift */; };
 		7F94A06A2675BE9400202F57 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F94A0692675BE9400202F57 /* UIViewExtension.swift */; };
 		7F94A06D2675BEB100202F57 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F94A06C2675BEB100202F57 /* LoadingView.swift */; };
+		7F94A0702675D1AA00202F57 /* UpdateStudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F94A06F2675D1AA00202F57 /* UpdateStudentLocationResponse.swift */; };
+		7F94A0732675D38500202F57 /* UpdateStudentRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F94A0722675D38500202F57 /* UpdateStudentRequestBody.swift */; };
 		7FD7427426754B4C0009191A /* LocationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD7427326754B4C0009191A /* LocationEndpoint.swift */; };
 		7FD74279267555160009191A /* MapScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD74278267555160009191A /* MapScreenViewController.swift */; };
 		7FE985B2266BFB89006FAA36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE985B1266BFB89006FAA36 /* AppDelegate.swift */; };
@@ -64,6 +66,8 @@
 		7F66E10A2675BA2600BC9BE4 /* DictionaryConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryConvertible.swift; sourceTree = "<group>"; };
 		7F94A0692675BE9400202F57 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		7F94A06C2675BEB100202F57 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		7F94A06F2675D1AA00202F57 /* UpdateStudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStudentLocationResponse.swift; sourceTree = "<group>"; };
+		7F94A0722675D38500202F57 /* UpdateStudentRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStudentRequestBody.swift; sourceTree = "<group>"; };
 		7FD7427326754B4C0009191A /* LocationEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationEndpoint.swift; sourceTree = "<group>"; };
 		7FD74278267555160009191A /* MapScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenViewController.swift; sourceTree = "<group>"; };
 		7FE985AE266BFB89006FAA36 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +154,7 @@
 				7F3E2C89267539E700A473A1 /* UdacitySessionRequestBody.swift */,
 				7F66E0A82675860500BC9BE4 /* AddStudentLocationRequestBody.swift */,
 				7F66E1062675BA0A00BC9BE4 /* StudenLocationRequest.swift */,
+				7F94A0722675D38500202F57 /* UpdateStudentRequestBody.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 				7F66E0AB2675872D00BC9BE4 /* AddStudentLocationResponse.swift */,
 				7F66E1002675B8D100BC9BE4 /* GetUserDataResponse.swift */,
 				7F66E1032675B9EF00BC9BE4 /* StudentLocationResponse.swift */,
+				7F94A06F2675D1AA00202F57 /* UpdateStudentLocationResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -332,6 +338,7 @@
 				7FE98608266C263B006FAA36 /* UdacitySessionEndpoint.swift in Sources */,
 				7F66E1012675B8D100BC9BE4 /* GetUserDataResponse.swift in Sources */,
 				7F3E2C7826752A8E00A473A1 /* UdacityApiClient.swift in Sources */,
+				7F94A0732675D38500202F57 /* UpdateStudentRequestBody.swift in Sources */,
 				7F3E2C8F26753A6A00A473A1 /* UdacitySessionRequestResponse.swift in Sources */,
 				7F66E1042675B9EF00BC9BE4 /* StudentLocationResponse.swift in Sources */,
 				7F66E0FE2675ACD200BC9BE4 /* UIViewControllerExtension.swift in Sources */,
@@ -349,6 +356,7 @@
 				7FE985E5266C162B006FAA36 /* GradientView.swift in Sources */,
 				7FE985DA266C075F006FAA36 /* Gradient.swift in Sources */,
 				7F3E2C7D267537D200A473A1 /* SimpleJSONHandler.swift in Sources */,
+				7F94A0702675D1AA00202F57 /* UpdateStudentLocationResponse.swift in Sources */,
 				7F66E0A526756E4F00BC9BE4 /* PinRegisterViewController.swift in Sources */,
 				7F3E2C80267537EC00A473A1 /* BaseApiClient.swift in Sources */,
 				7FE985F1266C18B1006FAA36 /* RequestParams.swift in Sources */,

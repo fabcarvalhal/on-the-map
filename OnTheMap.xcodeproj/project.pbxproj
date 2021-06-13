@@ -26,6 +26,8 @@
 		7F94A06D2675BEB100202F57 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F94A06C2675BEB100202F57 /* LoadingView.swift */; };
 		7F94A0702675D1AA00202F57 /* UpdateStudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F94A06F2675D1AA00202F57 /* UpdateStudentLocationResponse.swift */; };
 		7F94A0732675D38500202F57 /* UpdateStudentRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F94A0722675D38500202F57 /* UpdateStudentRequestBody.swift */; };
+		7F94A0772675D77F00202F57 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F94A0762675D77F00202F57 /* ListViewController.swift */; };
+		7F94A07A2675DACA00202F57 /* StudentLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F94A0792675DACA00202F57 /* StudentLocationCell.swift */; };
 		7FD7427426754B4C0009191A /* LocationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD7427326754B4C0009191A /* LocationEndpoint.swift */; };
 		7FD74279267555160009191A /* MapScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD74278267555160009191A /* MapScreenViewController.swift */; };
 		7FE985B2266BFB89006FAA36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE985B1266BFB89006FAA36 /* AppDelegate.swift */; };
@@ -68,6 +70,8 @@
 		7F94A06C2675BEB100202F57 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		7F94A06F2675D1AA00202F57 /* UpdateStudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStudentLocationResponse.swift; sourceTree = "<group>"; };
 		7F94A0722675D38500202F57 /* UpdateStudentRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStudentRequestBody.swift; sourceTree = "<group>"; };
+		7F94A0762675D77F00202F57 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		7F94A0792675DACA00202F57 /* StudentLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationCell.swift; sourceTree = "<group>"; };
 		7FD7427326754B4C0009191A /* LocationEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationEndpoint.swift; sourceTree = "<group>"; };
 		7FD74278267555160009191A /* MapScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenViewController.swift; sourceTree = "<group>"; };
 		7FE985AE266BFB89006FAA36 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +136,7 @@
 		7F3E2C85267539A100A473A1 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				7F94A0752675D76100202F57 /* ListScreen */,
 				7F66E0A326756E3A00BC9BE4 /* PinRegister */,
 				7FD74277267555060009191A /* MapScreen */,
 				7FE985CE266BFE2B006FAA36 /* LoginScreen */,
@@ -182,6 +187,7 @@
 		7F66E1092675BA1E00BC9BE4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7FE985D9266C075F006FAA36 /* Gradient.swift */,
 				7F66E10A2675BA2600BC9BE4 /* DictionaryConvertible.swift */,
 				7F66E0FA26759B2100BC9BE4 /* NSMutableAttributedStringExtension.swift */,
 				7F3E2C822675388300A473A1 /* LoginSession.swift */,
@@ -189,6 +195,25 @@
 				7F94A0692675BE9400202F57 /* UIViewExtension.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		7F7049092675E5D200461A60 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7F94A0792675DACA00202F57 /* StudentLocationCell.swift */,
+				7FE985E0266C136F006FAA36 /* CustomTextfield.swift */,
+				7FE985E4266C162B006FAA36 /* GradientView.swift */,
+				7F94A06C2675BEB100202F57 /* LoadingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7F94A0752675D76100202F57 /* ListScreen */ = {
+			isa = PBXGroup;
+			children = (
+				7F94A0762675D77F00202F57 /* ListViewController.swift */,
+			);
+			path = ListScreen;
 			sourceTree = "<group>";
 		};
 		7FD74277267555060009191A /* MapScreen */ = {
@@ -218,19 +243,16 @@
 		7FE985B0266BFB89006FAA36 /* OnTheMap */ = {
 			isa = PBXGroup;
 			children = (
+				7F7049092675E5D200461A60 /* Views */,
 				7F66E1092675BA1E00BC9BE4 /* Utils */,
 				7F3E2C85267539A100A473A1 /* Scenes */,
 				7FE985E8266C1867006FAA36 /* Networking */,
 				7FE985B1266BFB89006FAA36 /* AppDelegate.swift */,
 				7FE985B3266BFB89006FAA36 /* SceneDelegate.swift */,
 				7FE985B7266BFB89006FAA36 /* Main.storyboard */,
-				7FE985D9266C075F006FAA36 /* Gradient.swift */,
 				7FE985BA266BFB8A006FAA36 /* Assets.xcassets */,
 				7FE985BC266BFB8A006FAA36 /* LaunchScreen.storyboard */,
 				7FE985BF266BFB8A006FAA36 /* Info.plist */,
-				7FE985E0266C136F006FAA36 /* CustomTextfield.swift */,
-				7FE985E4266C162B006FAA36 /* GradientView.swift */,
-				7F94A06C2675BEB100202F57 /* LoadingView.swift */,
 			);
 			path = OnTheMap;
 			sourceTree = "<group>";
@@ -324,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F94A0772675D77F00202F57 /* ListViewController.swift in Sources */,
 				7FE985EA266C1878006FAA36 /* HTTPHeaderField.swift in Sources */,
 				7FD74279267555160009191A /* MapScreenViewController.swift in Sources */,
 				7F66E0FB26759B2100BC9BE4 /* NSMutableAttributedStringExtension.swift in Sources */,
@@ -356,6 +379,7 @@
 				7FE985E5266C162B006FAA36 /* GradientView.swift in Sources */,
 				7FE985DA266C075F006FAA36 /* Gradient.swift in Sources */,
 				7F3E2C7D267537D200A473A1 /* SimpleJSONHandler.swift in Sources */,
+				7F94A07A2675DACA00202F57 /* StudentLocationCell.swift in Sources */,
 				7F94A0702675D1AA00202F57 /* UpdateStudentLocationResponse.swift in Sources */,
 				7F66E0A526756E4F00BC9BE4 /* PinRegisterViewController.swift in Sources */,
 				7F3E2C80267537EC00A473A1 /* BaseApiClient.swift in Sources */,

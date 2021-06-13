@@ -1,44 +1,42 @@
 //
-//  MapScreen.swift
+//  ListViewController.swift
 //  OnTheMap
 //
-//  Created by Fabrício Silva Carvalhal on 12/06/21.
+//  Created by Fabrício Silva Carvalhal on 13/06/21.
 //
 
 import UIKit
-import MapKit
-import SafariServices
 
-final class MapScreenViewController: UIViewController {
-    
-    @IBOutlet private weak var mapView: MKMapView! {
-        didSet {
-            mapView.delegate = self
-        }
-    }
+final class ListViewController: UITableViewController {
     
     private let apiClient: UdacityApiClientProtocol = UdacityApiClient()
     private let pinRegistrationSegueIdentifier = "showPinRegisterVC"
     private var locationToUpdate: StudentLocationResponseItem?
+    private let cellIdentifier = "StudentLocationCellIdentifier"
+    private let cellHeight: CGFloat = 120
+    
+    private var locations = [StudentLocationResponseItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadPins()
+        loadLocations()
     }
     
-    func loadPins() {
-        view.showLoading()
-        clearAnnotations()
-        let request = StudentLocationRequest(limit: 100, skip: 0, order: "-updatedAt", userId: "")
+    func loadLocations() {
+        UIApplication.shared.windows.first?.showLoading()
+        let request = StudentLocationRequest(limit: 100,
+                                             skip: 0,
+                                             order: "-updatedAt",
+                                             userId: "")
         apiClient.getStudentLocations(studentLocationRequest: request) { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.view.hideLoading()
+                UIApplication.shared.windows.first?.hideLoading()
                 switch result {
                 case .success(let data):
                     guard let results = data.results else { return }
-                    let annotations = self.createAnnotations(using: results)
-                    self.mapView.addAnnotations(annotations)
+                    self.locations = results
+                    self.tableView.reloadData()
                 case .failure(let error):
                     self.showErrorAlert(message: error.localizedDescription, title: "Error")
                 }
@@ -46,9 +44,9 @@ final class MapScreenViewController: UIViewController {
         }
     }
     
-    func verifyIfUserHasAlreadySentAPin(completion: @escaping (StudentLocationResponseItem?) -> Void) {
+    func verifyIfUserHasAlreadySentALocation(completion: @escaping (StudentLocationResponseItem?) -> Void) {
         guard let userId = LoginSession.current?.get()?.uniqueId else { return }
-        view.showLoading()
+        UIApplication.shared.windows.first?.showLoading()
         let request = StudentLocationRequest(limit: 1,
                                              skip: 0,
                                              order: "-updatedAt",
@@ -56,7 +54,7 @@ final class MapScreenViewController: UIViewController {
         apiClient.getStudentLocations(studentLocationRequest: request) { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.view.hideLoading()
+                UIApplication.shared.windows.first?.hideLoading()
                 switch result {
                 case .success(let data):
                     completion(data.results?.first)
@@ -66,28 +64,13 @@ final class MapScreenViewController: UIViewController {
             }
         }
     }
-    
-    func createAnnotations(using studentLocations: [StudentLocationResponseItem]) -> [MKPointAnnotation] {
-        return studentLocations.map { location in
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude,
-                                                           longitude: location.longitude)
-            annotation.title = String(format: "%@ %@", location.firstName, location.lastName)
-            annotation.subtitle = location.mediaURL
-            return annotation
-        }
-    }
-    
-    func clearAnnotations() {
-        mapView.removeAnnotations(mapView.annotations)
-    }
-    
+
     @IBAction func reloadButtonAction() {
-        loadPins()
+        loadLocations()
     }
     
     @IBAction func addPinButtonAction() {
-        verifyIfUserHasAlreadySentAPin { [weak self] location in
+        verifyIfUserHasAlreadySentALocation { [weak self] location in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 guard location != nil else {
@@ -113,37 +96,36 @@ final class MapScreenViewController: UIViewController {
             locationToUpdate = nil
         }
     }
-}
-
-extension MapScreenViewController: MKMapViewDelegate {
     
-    func mapView(_ mapView: MKMapView,
-                 viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let identifier = "Annotation"
-        
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-
-        if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView?.canShowCallout = true
-            let accessoryButton = UIButton(type: .infoLight)
-            annotationView?.rightCalloutAccessoryView = accessoryButton
-        } else {
-            annotationView?.annotation = annotation
-        }
-        return annotationView
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        locations.count
     }
     
-    func mapView(_ mapView: MKMapView,
-                 annotationView view: MKAnnotationView,
-                 calloutAccessoryControlTapped control: UIControl) {
-        let annotationSubtitle = view.annotation?.subtitle ?? ""
-        if let url = URL(string: annotationSubtitle ?? "") {
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? StudentLocationCell else {
+            return UITableViewCell()
+        }
+        
+        let location = locations[indexPath.row]
+        let title = String(format: "%@ %@", location.firstName, location.lastName)
+        cell.setData(title: title, subtitle: location.mediaURL)
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            didSelectRowAt indexPath: IndexPath) {
+        if let url = URL(string: locations[indexPath.row].mediaURL) {
             guard UIApplication.shared.canOpenURL(url) else {
                 showErrorAlert(message: "The URL can't be openned", title: "Error")
                 return
             }
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeight
     }
 }

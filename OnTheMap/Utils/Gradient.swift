@@ -14,8 +14,8 @@ enum Gradient {
     var colors: [CGColor] {
         switch self{
         case .loginBackground:
-            return [UIColor(red: 255.0/255.0, green: 149.0/255.0, blue: 0.0/255.0, alpha: 1.0).cgColor,
-                    UIColor(red: 255.0/255.0, green: 94.0/255.0, blue: 58.0/255.0, alpha: 1.0).cgColor]
+            return [UIColor(red: 68.0/255.0, green: 170.0/255.0, blue: 155.0/255.0, alpha: 1.0).cgColor,
+                    UIColor.systemBlue.cgColor]
         }
     }
     

@@ -27,9 +27,16 @@ final class LoginViewController: UIViewController {
     // MARK: - Variables and constans
     private let loggedInAreSegueIdentifier = "showLoggedInArea"
     private let apiClient: UdacityApiClientProtocol = UdacityApiClient()
+    private let udacitySignUpUrl = URL(string: "https://www.udacity.com/account/auth#!/signup")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        subscribeForKeyboardNotifications()
+        setTouchOutsideGesture()
+    }
+    
+    deinit {
+        removeObservers()
     }
     
     // MARK - Actions
@@ -77,10 +84,9 @@ final class LoginViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction private func signUpButtonAction() {
+        guard let url = udacitySignUpUrl else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
 }
-
-
-
-
-
-

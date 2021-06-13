@@ -41,13 +41,12 @@ final class PinRegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTouchOutsideGesture()
+        subscribeForKeyboardNotifications()
         setStudyingLabelText()
     }
     
-    private func setTouchOutsideGesture() {
-        let gesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
-        gesture.cancelsTouchesInView = false
-        view.addGestureRecognizer(gesture)
+    deinit {
+        removeObservers()
     }
     
     private func setStudyingLabelText() {
@@ -77,11 +76,10 @@ final class PinRegisterViewController: UIViewController {
                     return
                 }
                 self?.myLocation = location
-                
+                self?.whereAreYouStudyingLabel.isHidden = true
+                self?.findOnTheMapView.isHidden = true
+                self?.locationTextField.isHidden = true
                 UIView.animate(withDuration: 1, animations: {
-                    self?.whereAreYouStudyingLabel.isHidden = true
-                    self?.findOnTheMapView.isHidden = true
-                    self?.locationTextField.isHidden = true
                     self?.mapViewWrapperView.isHidden = false
                     self?.linkTextFieldWrapperView.isHidden = false
                     self?.cancelButton.setTitleColor(.white, for: .normal)
@@ -201,6 +199,12 @@ final class PinRegisterViewController: UIViewController {
                 return
             }
             completion(location.location)
+        }
+    }
+    
+    override func keyboardWillShow(_ notification: Notification) {
+        if !linkTextField.isFirstResponder {
+            super.keyboardWillShow(notification)
         }
     }
 }

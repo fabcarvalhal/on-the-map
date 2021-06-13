@@ -48,6 +48,7 @@
 		7FE985FE266C1A16006FAA36 /* URLRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE985FD266C1A16006FAA36 /* URLRequester.swift */; };
 		7FE98601266C1DD2006FAA36 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE98600266C1DD2006FAA36 /* URLRequestBuilder.swift */; };
 		7FE98608266C263B006FAA36 /* UdacitySessionEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE98607266C263B006FAA36 /* UdacitySessionEndpoint.swift */; };
+		7FFD17222675FA8000209AEC /* LogoutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD17212675FA8000209AEC /* LogoutResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		7FE985FD266C1A16006FAA36 /* URLRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequester.swift; sourceTree = "<group>"; };
 		7FE98600266C1DD2006FAA36 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
 		7FE98607266C263B006FAA36 /* UdacitySessionEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacitySessionEndpoint.swift; sourceTree = "<group>"; };
+		7FFD17212675FA8000209AEC /* LogoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 				7F66E1002675B8D100BC9BE4 /* GetUserDataResponse.swift */,
 				7F66E1032675B9EF00BC9BE4 /* StudentLocationResponse.swift */,
 				7F94A06F2675D1AA00202F57 /* UpdateStudentLocationResponse.swift */,
+				7FFD17212675FA8000209AEC /* LogoutResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				7F94A06A2675BE9400202F57 /* UIViewExtension.swift in Sources */,
 				7FE985E1266C136F006FAA36 /* CustomTextfield.swift in Sources */,
 				7FE985FE266C1A16006FAA36 /* URLRequester.swift in Sources */,
+				7FFD17222675FA8000209AEC /* LogoutResponse.swift in Sources */,
 				7FE985E5266C162B006FAA36 /* GradientView.swift in Sources */,
 				7FE985DA266C075F006FAA36 /* Gradient.swift in Sources */,
 				7F3E2C7D267537D200A473A1 /* SimpleJSONHandler.swift in Sources */,

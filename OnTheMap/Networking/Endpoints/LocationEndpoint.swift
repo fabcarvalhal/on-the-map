@@ -37,7 +37,7 @@ enum LocationEndpoint: Endpoint {
         }
     }
     
-    var headers: [String : String] {
+    var headers: [String : Any] {
         return [HTTPHeaderField.accept.rawValue: ContentType.json.rawValue,
                 HTTPHeaderField.contentType.rawValue: ContentType.json.rawValue]
     }

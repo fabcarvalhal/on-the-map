@@ -29,4 +29,8 @@ final class LoginSession {
     func get() -> UserDataSession? {
         session
     }
+    
+    func erase() {
+        session = nil
+    }
 }

@@ -11,4 +11,5 @@ enum HTTPHeaderField: String {
     
     case contentType = "Content-Type"
     case accept = "Accept"
+    case xsrfToken = "X-XSRF-TOKEN"
 }

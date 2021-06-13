@@ -90,6 +90,25 @@ final class ListViewController: UITableViewController {
         }
     }
     
+    @IBAction func logoutButtonAction() {
+        UIApplication.shared.windows.first?.showLoading()
+        apiClient.logout { [weak self] response in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                UIApplication.shared.windows.first?.hideLoading()
+                switch response {
+                case .success:
+                    LoginSession.current?.erase()
+                    let loginViewController = self.storyboard?.instantiateViewController(identifier: "LoginNavigation")
+                    UIApplication.shared.windows.first?.rootViewController = loginViewController
+                    
+                case .failure(let error):
+                    self.showErrorAlert(message: error.localizedDescription, title: "Error")
+                }
+            }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == pinRegistrationSegueIdentifier {
             (segue.destination as? PinRegisterViewController)?.locationIdToUpdate = locationToUpdate?.objectId
@@ -97,6 +116,7 @@ final class ListViewController: UITableViewController {
         }
     }
     
+    // MARK: - Tableview methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         locations.count
     }

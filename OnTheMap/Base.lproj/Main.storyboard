@@ -141,8 +141,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="DuR-hy-sAH">
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="Fe0-Ei-XaF">
+                            <connections>
+                                <action selector="logoutButtonAction" destination="mqj-eA-8YF" id="1iJ-gy-iYr"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem title="Item" image="plus" catalog="system" id="LlY-vg-BDN">
+                            <barButtonItem title="Item" image="mappin" catalog="system" id="LlY-vg-BDN">
                                 <connections>
                                     <action selector="addPinButtonAction" destination="mqj-eA-8YF" id="bn1-eR-YBA"/>
                                 </connections>
@@ -427,8 +432,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="On The Map" id="VSr-7W-QaQ">
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="vGH-2K-Qkx">
+                            <connections>
+                                <action selector="logoutButtonAction" destination="bxj-kE-pRk" id="ppH-ok-XDJ"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem image="plus" catalog="system" id="4KI-2R-Obp">
+                            <barButtonItem image="mappin" catalog="system" id="4KI-2R-Obp">
                                 <connections>
                                     <action selector="addPinButtonAction" destination="bxj-kE-pRk" id="5Gj-B5-z0h"/>
                                 </connections>
@@ -451,7 +461,7 @@
         <!--Navigation Controller-->
         <scene sceneID="PqL-Nv-eHA">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ts3-so-19p" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNavigation" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ts3-so-19p" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PCc-Ya-QFj">
                         <autoresizingMask key="autoresizingMask"/>
@@ -467,14 +477,14 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="G6c-ut-a43"/>
+        <segue reference="eHK-27-VuL"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="map" catalog="system" width="128" height="110"/>
+        <image name="mappin" catalog="system" width="105" height="128"/>
         <image name="outlinedPin" width="32" height="32"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="udacity_logo" width="412" height="418"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

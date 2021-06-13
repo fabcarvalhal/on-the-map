@@ -24,6 +24,8 @@ protocol UdacityApiClientProtocol {
     func updateStudentLocation(objectId: String,
                                studentLocationRequest: UpdateStudentLocationRequestBody,
                                completion: @escaping (Result<UpdateStudnetLocationResponse>) -> Void)
+    
+    func logout(completion: @escaping (Result<LogoutResponse>) -> Void)
 }
 
 final class UdacityApiClient: BaseApiClient, UdacityApiClientProtocol {
@@ -125,6 +127,23 @@ final class UdacityApiClient: BaseApiClient, UdacityApiClientProtocol {
                 .set(headers: endpoint.headers)
                 .build()
             makeRequest(with: udacityRequest,
+                        completion: completion)
+        } catch let error {
+            completion(.failure(error))
+        }
+    }
+    
+    func logout(completion: @escaping (Result<LogoutResponse>) -> Void) {
+        let endpoint = UdacitySessionEndpoint.logout
+        
+        do {
+            let udacityRequest = try URLRequestBuilder(with: endpoint.baseUrl)
+                .set(method: endpoint.method)
+                .set(path: endpoint.path)
+                .set(headers: endpoint.headers)
+                .build()
+            makeRequest(with: udacityRequest,
+                        jsonHandler: SimpleJSONHandler<LogoutResponse>(decodeDataAfter: 5),
                         completion: completion)
         } catch let error {
             completion(.failure(error))
